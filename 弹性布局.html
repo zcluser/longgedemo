@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			
+			#box{
+				width: 1000px;
+				height: 600px;
+				background-color: palegreen;
+				margin: 0 auto;
+				border: 3px solid gold;
+				/* 弹性布局 注意！！！ 是加给父级标签的 */
+				/* 开启弹性布局 */
+				display: flex;
+				/* 主轴的方向（默认是横向从左到右） */
+				flex-direction: row;
+				/* 换行方式 默认是不换行*/
+				flex-wrap: wrap;
+				/* 弹性子元素在主轴对齐方式 */
+				justify-content: space-between;
+				/* 弹性子元素在侧轴对齐方式 */
+				align-items: center;
+				/* 多行弹性子元素在侧轴对齐方式 */
+				/* align-content: center; */
+			}
+			#box div{
+				width: 280px;
+				height: 150px;
+				background-color: pink;
+				text-align: center;
+				font-size: 30px;
+				line-height: 150px;
+			}
+			#box div:nth-child(odd){
+				background-color: seagreen;
+			}
+			#box div:nth-child(8){
+				/* 值越小，越靠前 */
+				order: 0;
+			}
+			#box div:nth-child(5){
+				/* flex-grow 影响在主轴方向，弹性子元素的宽度 */
+				flex-grow: 0;
+			}
+			/* ------------------------- */
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+			<div>5</div>
+			<div>6</div>
+			<div>7</div>
+			<div>8</div>
+			<div>9</div>
+		</div>
+		
+	</body>
+</html>
+<!-- 
+        弹性布局
+		1.给容器（父标签）设置display：flex；
+		弹性子元素（就是“父标签”容器中的元素）
+		2.主轴：默认情况下所有的弹性子元素都会从主轴的起点排到终点（默认的主轴的水平方向）
+		3.侧轴和主轴是垂直关系
+		4.注意主轴和侧轴不是真实存在的，只是为了帮助我们更好的明确弹性子元素的排布方向和排布位置。
+		
+		
+		一.容器的css样式
+		1.主轴的方向  flex-direction:
+		a.row  默认值,水平,从左至右
+		b.row-reverse 水平,从右至左
+		c.column 竖直,从上到下
+		d.column-reverse 竖直,从下往上
+		
+		2.换行方式 flex-wrap
+		a.nowrap 默认值,不换行,如果空间不够,强制压缩元素的宽度
+		b.wrap 换行
+		c.wrap-reverse 换行,侧轴与之前的方向相反,按照调整后的侧轴反向排布!!
+		
+		3.弹性子元素在主轴的对齐方式 justify-content:
+		a.flex-start 默认值,就是按照书写顺序从主轴的起点开始排布
+		b.flex-end  按照书写顺序靠着主轴的终点排列.
+		c.center  主轴居中
+		d.space-between 最外侧的两个元素靠边,其余元素左右距离等分  **
+		e.space-around 所有元素距离相等  **
+		
+		4.弹性子元素在侧轴的对齐方式  align-items
+		a.flex-start 按照书写书顺序从侧轴起点开始排列
+		b.flex-end 按照书写顺序靠着侧轴终点排列
+		c.center 侧轴居中  **
+		d.baseline 文字基线对齐
+		e.stretch 默认值,弹性子元素在侧轴上的默认高度.如果已经设置了高度,那么该值失效.不设置高度,默认撑满整个容器.
+		
+		5.多行弹性子元素在侧轴上的对齐方式 align-content
+		a.flex-start
+		b.flex-end
+		c.center
+		d.stretch
+		以上四个值,系统会把多行看成一个整体,效果与align-items的效果一样
+		
+		e.space-between  
+		f.space-around 
+		以上两个值,系统会把多行看成一个整体,效果与justify-content一样
+		
+		二. 弹性子元素的css样式:
+		     1.order 顺序数值, 决定元素的排序先后顺序, 默认值都是0, 值越小, 位置越靠前, 如果值相等, 写的越早越靠前.
+		     2.flex-grow 多余空间的分配比例 默认值0, 表示不分配
+		填写的非0数表示对应元素所占多余空间的份数.
+		     3. flex-shrink 当空间不足时的收缩比例  0表示不收缩, 默认值1 
+		公式:
+		     a. 计算权重 
+		              所有元素 自身宽*缩放比例 的和
+		     b. 依次计算应收缩大小
+		     (自身宽度*缩放比例/权重)*溢出量
+		4. align-self 单独设置弹性子元素在侧轴上的对齐方式
+		值与align-items一样
+		
+		
+		
+		
+-->
